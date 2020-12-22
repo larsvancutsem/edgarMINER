@@ -17,15 +17,16 @@ search <- function(params){
       content('text', encoding = "UTF-8") %>% 
       fromJSON()
     result <- temp$hits$hits$`_source`
-    result$link <- paste0("https://www.sec.gov/Archives/edgar/data/", 
-                          result$ciks %>% clean() %>% as.numeric(), "/",
-                          result$adsh %>% clean() %>% 
-                            gsub(pattern = "-", replacement = ""), "/",
-                          result$adsh %>% clean(), ".txt")
+    temp <- paste0("https://www.sec.gov/Archives/edgar/data/", 
+                   result$ciks %>% clean() %>% as.numeric(), "/",
+                   result$adsh %>% clean() %>% 
+                     gsub(pattern = "-", replacement = ""), "/")
+    result$link <- paste0(temp, result$adsh %>% clean(), ".txt")
     result$file <- paste0(result$adsh %>% clean(), ".txt")
+    result$folder <- temp
     result %>% return()
   }) %>% bind_rows()
-  return <- table[, c(5, 10, 11, 15, 2, 8, 14, 9, 19, 20)]
+  return <- table[, c(5, 10, 11, 15, 2, 8, 14, 9, 19, 20, 21)]
   return[] <- return %>% lapply(clean)
   return[!duplicated(return), ] %>% return()
 }
