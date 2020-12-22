@@ -25,7 +25,7 @@ search <- function(params){
     result$file <- paste0(result$adsh %>% clean(), ".txt")
     result %>% return()
   }) %>% bind_rows()
-  return <- table[, c(5, 10, 3, 11, 2, 8, 14, 9, 19, 20)]
+  return <- table[, c(5, 10, 11, 15, 2, 8, 14, 9, 19, 20)]
   return[] <- return %>% lapply(clean)
   return[!duplicated(return), ] %>% return()
 }
