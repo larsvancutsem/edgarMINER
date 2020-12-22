@@ -1,2 +1,2 @@
 # edgarMINER
-R interface for the EDGAR Full Text Search
+R interface for the SEC's EDGAR Full Text Search
